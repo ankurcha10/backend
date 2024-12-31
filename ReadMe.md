@@ -51,3 +51,50 @@ Registers a new user in the system.
     ]
   }
   ```
+### POST /users/login
+
+#### Description
+Logs in an existing user.
+
+#### Request Body
+```json
+{
+    "email": "string (valid email format, required)",
+    "password": "string (required)"
+}
+```
+
+#### Responses
+
+##### Success
+- **Status Code:** 200 OK
+- **Response Body:**
+    ```json
+    {
+        "user": {
+            "_id": "string",
+            "fullname": {
+                "firstname": "string",
+                "lastname": "string"
+            },
+            "email": "string",
+            "socketId": "string"
+        },
+        "token": "string"
+    }
+    ```
+
+##### Error
+- **Status Code:** 401 Unauthorized
+- **Response Body:**
+    ```json
+    {
+        "errors": [
+            {
+                "msg": "Invalid email or password",
+                "param": "email/password",
+                "location": "body"
+            }
+        ]
+    }
+    ```
